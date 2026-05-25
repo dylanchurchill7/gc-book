@@ -6,7 +6,7 @@ function Navbar() {
         Site Name
       </Link>
       <ul>
-        <CustomLink to="/pricing">Pricing</CustomLink>
+        <CustomLink to="/explore">Explore</CustomLink>
         <CustomLink to="/about">About</CustomLink>
       </ul>
     </nav>
