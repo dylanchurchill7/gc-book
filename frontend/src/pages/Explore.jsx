@@ -1,35 +1,26 @@
+import { useEffect, useState } from "react";
 import Course from "../components/Course.jsx";
 import "../css/Explore.css";
-import biggarImage from "../assets/Biggargc.png";
-import perdueImage from "../assets/Perduegc.png";
 
 function Explore() {
-  const courses = [
-    {
-      name: "Biggar Golf Club",
-      location: "Biggar, Saskatchewan",
-      description: "A 9 hole course with local prairie feel",
-      image: biggarImage,
-    },
-    {
-      name: "Perdue Golf Course",
-      location: "Perdue, Saskatchewan",
-      description:
-        "A community golf course for casual rounds and local player.",
-      image: perdueImage,
-    },
-  ];
+  const [courses, setCourses] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:3000/api/courses")
+      .then((res) => res.json())
+      .then((data) => setCourses(data))
+      .catch((err) => console.error("Failed to fetch courses:", err));
+  }, []);
   return (
     <>
       <h1>Explore Courses</h1>
       <div className="course-list">
         {courses.map((course) => (
           <Course
-            key={course.name}
+            key={course.id}
             name={course.name}
             location={course.location}
             description={course.description}
-            image={course.image}
+            image={course.image_url}
           />
         ))}
       </div>
